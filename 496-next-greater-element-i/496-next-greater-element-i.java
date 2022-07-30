@@ -14,10 +14,10 @@ class Solution {
                 c++;
             }
         }
-        int k = 0;
+        c = 0;
         int res[] = new int[nums1.length];
         for(int i = 0;i < res.length;i++){
-            res[k++] = map.get(nums1[i]);
+            res[c++] = map.get(nums1[i]);
         }
         return res;
     }
