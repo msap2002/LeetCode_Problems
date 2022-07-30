@@ -16,7 +16,7 @@ class Solution {
         }
         c = 0;
         int res[] = new int[nums1.length];
-        for(int i = 0;i < res.length;i++){
+        for(int i = 0;i < nums1.length;i++){
             res[c++] = map.get(nums1[i]);
         }
         return res;
