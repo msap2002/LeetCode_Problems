@@ -3,8 +3,8 @@ class Solution {
         int res = 0;
         int dup = x;
         while(x > 0){
-            //int digit = x % 10;
-            res = (res * 10) + x % 10;
+            int digit = x % 10;
+            res = res * 10 + digit;
             x = x / 10;
         }
         if(dup == res)
