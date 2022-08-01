@@ -4,6 +4,8 @@ class Solution {
         while(mul < n){
             mul = mul*2;
         }
-        return (mul == n);
+        if(mul == n)
+            return true;
+        return false;
     }
 }
