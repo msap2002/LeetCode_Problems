@@ -13,8 +13,6 @@
  *     }
  * }
  */
-import java.util.LinkedList;
-import java.util.Queue;
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>>list = new ArrayList<>();
@@ -31,13 +29,11 @@ class Solution {
                 TreeNode temp = q.peek();
                 list1.add(temp.val);
                 q.remove();
-                if(temp.left != null){
-                q.add(temp.left);
-            }
-            if(temp.right != null){
-                q.add(temp.right);
-            }
-            count--;
+                if(temp.left != null)
+                    q.add(temp.left);
+                if(temp.right != null)
+                    q.add(temp.right);
+                count--;
             }
             list.add(list1);
         }
