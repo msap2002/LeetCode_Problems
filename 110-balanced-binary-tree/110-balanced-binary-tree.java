@@ -15,7 +15,10 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        return isBalancedBetter(root) != -1;
+        int ans = isBalancedBetter(root);
+        if(ans == -1)
+            return false;
+        return true;
     }
     public static int isBalancedBetter(TreeNode root){
         if(root == null)
@@ -28,6 +31,6 @@ class Solution {
             return -1;
         if(Math.abs(left - right) > 1)
             return -1;
-        return Math.max(left,right) + 1;
+        return 1 + Math.max(left,right);
     }
 }
