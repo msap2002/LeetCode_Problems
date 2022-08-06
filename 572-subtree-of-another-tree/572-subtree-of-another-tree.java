@@ -22,7 +22,9 @@ class Solution {
         boolean ans = isMatching(root,subRoot);
         boolean result = isSubtree(root.left,subRoot);
         boolean result2 = isSubtree(root.right,subRoot);
-        return ans||result||result2;
+        if(ans||result||result2)
+            return true;
+        return false;
     }
     public boolean isMatching(TreeNode root,TreeNode subRoot){
         if(root == null && subRoot == null)
