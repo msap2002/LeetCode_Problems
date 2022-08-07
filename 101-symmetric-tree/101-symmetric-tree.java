@@ -33,9 +33,9 @@ class Solution {
             return true;
         if(p != null && q != null && p.val != q.val)
             return false;
-        if(p != null && q == null)
-            return false;
         if(p == null && q != null)
+            return false;
+        if(p != null && q == null)
             return false;
         boolean res1 = isSameTree(p.left,q.left);
         boolean res2 = isSameTree(p.right,q.right);
