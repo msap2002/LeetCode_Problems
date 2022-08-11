@@ -1,7 +1,7 @@
 class Solution {
     public int climbStairs(int n) {
         int dp[] = new int[n + 1];
-        if(n == 0||n == 1||n == 2||n == 3)
+        if(n == 0||n == 1||n == 2)
             return n;
         dp[0] = 0;
         dp[1] = 1;
