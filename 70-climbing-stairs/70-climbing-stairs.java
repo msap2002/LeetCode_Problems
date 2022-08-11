@@ -6,9 +6,8 @@ class Solution {
         dp[0] = 0;
         dp[1] = 1;
         dp[2] = 2;
-        dp[3] = 3;
-        System.out.println(dp.length);
-        for(int i = 4;i < dp.length;i++){
+        //System.out.println(dp.length);
+        for(int i = 3;i < dp.length;i++){
             dp[i] = dp[i - 1] + dp[i - 2];
         }
         return dp[n];
