@@ -34,7 +34,7 @@ class Solution
         for(int i = 0;i < x + 1;i++){
             for(int j = 0;j < y + 1;j++){
                 if(i == 0||j == 0)
-                  dp[i][j] = 0;
+                   dp[i][j] = 0;
             }
         }
         for(int i = 1;i < x + 1;i++){
