@@ -44,8 +44,8 @@ class Solution
     {
         //Your code here
         int lcs = lcs(X,Y,m,n);
-        int ans = m + n - lcs;
-        return ans;
+        int res = m + n - lcs;
+        return res;
     }
     public static int lcs(String X,String Y,int m,int n){
         int dp[][] = new int[m + 1][n + 1];
