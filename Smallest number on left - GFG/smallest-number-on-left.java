@@ -35,12 +35,10 @@ class Solution{
         List<Integer>list = new ArrayList<>();
         Stack<Integer>stk = new Stack<>();
         for(int i = 0;i < n;i++){
-            if(stk.isEmpty()){
-                list.add(-1);
-            }
-            else if(!stk.isEmpty() && stk.peek() < a[i]){
-                list.add(stk.peek());
-            }
+            if(stk.isEmpty())
+              list.add(-1);
+            else if(!stk.isEmpty() && stk.peek() < a[i])
+              list.add(stk.peek());
             else if(!stk.isEmpty() && stk.peek() >= a[i]){
                 while(!stk.isEmpty() && stk.peek() >= a[i]){
                     stk.pop();
