@@ -45,20 +45,18 @@ class Solution {
         long second = kthSmallest(A,K2);
         long sum = 0;
         for(int i = 0;i < N;i++){
-            if(A[i] > first && A[i] < second){
-                sum = sum + A[i];
-            }
+            if(A[i] > first && A[i] < second)
+               sum += A[i];
         }
         return sum;
     }
     public static long kthSmallest(long A[],long k){
-        PriorityQueue<Long>maxHeap = new PriorityQueue<>(Collections.reverseOrder());
         int n = A.length;
+        PriorityQueue<Long>maxHeap = new PriorityQueue<>(Collections.reverseOrder());
         for(int i = 0;i < n;i++){
             maxHeap.add(A[i]);
-            if(maxHeap.size() > k){
-                maxHeap.poll();
-            }
+            if(maxHeap.size() > k)
+              maxHeap.poll();
         }
         return maxHeap.peek();
     }
