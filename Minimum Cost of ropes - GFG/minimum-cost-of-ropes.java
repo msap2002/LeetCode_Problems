@@ -67,14 +67,14 @@ class Solution
     {
         // your code here
         PriorityQueue<Long>minHeap = new PriorityQueue<>();
-        for(int i = 0;i < n;i++){
-            minHeap.add(arr[i]);
+        for(Long i : arr){
+            minHeap.add(i);
         }
         long tcost = 0;
         while(minHeap.size() >= 2){
             long first = minHeap.poll();
             long second = minHeap.poll();
-            tcost += (first + second);
+            tcost += first + second;
             minHeap.add(first + second);
         }
         return tcost;
