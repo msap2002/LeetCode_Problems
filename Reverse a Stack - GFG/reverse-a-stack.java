@@ -48,24 +48,21 @@ class Solution
     static void reverse(Stack<Integer> s)
     {
         // add your code here
-        if(s.size() == 0)
+        if(s.size() == 1)
           return;
-        ArrayList<Integer>list = new ArrayList<>();
-        solve(s,list);
-        int n = list.size();
-        while(n != 0){
-            s.push(list.get(n - 1));
-            n--;
-        }
+        int val = s.pop();
+        reverse(s);
+        insert(s,val);
+        return;
     }
-    static void solve(Stack<Integer>stk,ArrayList<Integer>list){
-        if(stk.size() == 1){
-            list.add(stk.pop());
+    static void insert(Stack<Integer>stk,int temp){
+        if(stk.size() == 0){
+            stk.push(temp);
             return;
         }
-        int temp = stk.pop();
-        solve(stk,list);
-        list.add(temp);
+        int val = stk.pop();
+        insert(stk,temp);
+        stk.push(val);
         return;
     }
 }
