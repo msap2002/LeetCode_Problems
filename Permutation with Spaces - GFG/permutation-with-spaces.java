@@ -41,20 +41,23 @@ class Solution{
         // Code Here
         ArrayList<String>res = new ArrayList<>();
         String output = "";
-        int index = 1;
+        // int index = 1;
         output += S.charAt(0);
-        helper(1,S,output,res);
+        helper(S.substring(1),output,res);
         Collections.sort(res);
         return res;
     }
-    public static void helper(int index, String inp, String output, ArrayList<String>res){
-        if(index == inp.length()){
+    public static void helper(String inp, String output, ArrayList<String>res){
+        if(inp.length() == 0){
             res.add(output);
             return;
         }
-        // op2 += inp.charAt(0);
-        helper(index + 1,inp,output + inp.charAt(index),res);
-        helper(index + 1,inp,output + " " + inp.charAt(index),res);
+        String op1 = output;
+        String op2 = output;
+        op1 += " " + inp.charAt(0);
+        op2 += inp.charAt(0);
+        helper(inp.substring(1),op1,res);
+        helper(inp.substring(1),op2,res);
     }
     
 }
