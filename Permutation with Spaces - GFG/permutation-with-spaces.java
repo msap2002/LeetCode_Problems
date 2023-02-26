@@ -39,25 +39,23 @@ class Solution{
     
     ArrayList<String> permutation(String S){
         // Code Here
-        ArrayList<String>res = new ArrayList<>();
         String output = "";
-        // int index = 1;
+        ArrayList<String>res = new ArrayList<>();
         output += S.charAt(0);
         helper(S.substring(1),output,res);
         Collections.sort(res);
         return res;
     }
-    public static void helper(String inp, String output, ArrayList<String>res){
-        if(inp.length() == 0){
+    public static void helper(String input, String output, ArrayList<String>res){
+        if(input.length() == 0){
             res.add(output);
             return;
         }
         String op1 = output;
         String op2 = output;
-        op1 += " " + inp.charAt(0);
-        op2 += inp.charAt(0);
-        helper(inp.substring(1),op1,res);
-        helper(inp.substring(1),op2,res);
+        op1 += " " + input.charAt(0);
+        op2 += input.charAt(0);
+        helper(input.substring(1),op1,res);
+        helper(input.substring(1),op2,res);
     }
-    
 }
