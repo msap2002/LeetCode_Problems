@@ -153,7 +153,7 @@ class Solution
 	        return;
 	    }
 	    if(node.left != null){
-	        addLeaves(node.left,ans);
+	       addLeaves(node.left,ans);
 	    }
 	    if(node.right != null){
 	        addLeaves(node.right,ans);
