@@ -31,23 +31,38 @@ class GFG{
 class Solution{
     public int minimizeCost(int arr[],int N,int K){
         //code here
-        int dp[] = new int[N + 1];
-        for(int i = 0;i < N;i++)
-          dp[i] = -1;
-        return f(N - 1,arr,K,dp);
+        // int dp[] = new int[N + 1];
+        // for(int i = 0;i < N;i++)
+        //   dp[i] = -1;
+        return f(arr,N,K);
     }
-    public int f(int index,int arr[],int K,int dp[]){
-        if(index == 0)
-          return 0;
-        if(dp[index] != -1)
-          return dp[index];
-        int minSteps = Integer.MAX_VALUE;
-        for(int i = 1;i <= K;i++){
-            if(index - i >= 0){
-               int ans =  f(index - i,arr,K,dp) + (int)Math.abs(arr[index] - arr[index - i]);
-               minSteps = (int)Math.min(minSteps,ans);
+    // public int f(int index,int arr[],int K,int dp[]){
+    //     if(index == 0)
+    //       return 0;
+    //     if(dp[index] != -1)
+    //       return dp[index];
+    //     int minSteps = Integer.MAX_VALUE;
+    //     for(int i = 1;i <= K;i++){
+    //         if(index - i >= 0){
+    //           int ans =  f(index - i,arr,K,dp) + (int)Math.abs(arr[index] - arr[index - i]);
+    //           minSteps = (int)Math.min(minSteps,ans);
+    //         }
+    //     }
+    //     return dp[index] = minSteps;
+    // }
+    public int f(int arr[],int N,int K){
+        int dp[] = new int[N + 1];
+        dp[0] = 0;
+        for(int i = 1;i < N;i++){
+            int minSteps = Integer.MAX_VALUE;
+            for(int j = 1;j <= K;j++){
+                if(i - j >= 0){
+                    int ans = dp[i - j] + (int)Math.abs(arr[i] - arr[i - j]);
+                    minSteps = (int)Math.min(minSteps,ans);
+                }
             }
+            dp[i] = minSteps;
         }
-        return dp[index] = minSteps;
+        return dp[N - 1];
     }
 }
