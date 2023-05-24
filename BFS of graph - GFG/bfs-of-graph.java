@@ -38,8 +38,8 @@ class Solution {
     public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
         ArrayList<Integer>bfs = new ArrayList<>();
-        Queue<Integer>q = new LinkedList<>();
         boolean vis[] = new boolean[V];
+        Queue<Integer>q = new LinkedList<>();
         q.add(0);
         vis[0] = true;
         while(!q.isEmpty()){
