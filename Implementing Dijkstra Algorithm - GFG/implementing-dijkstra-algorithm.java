@@ -57,7 +57,7 @@ class DriverClass
 class Pair{
     int distance;
     int node;
-    public Pair(int distance,int node){
+    Pair(int distance,int node){
         this.distance = distance;
         this.node = node;
     }
@@ -69,10 +69,9 @@ class Solution
     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
     {
         // Write your code here
-        PriorityQueue<Pair>pq = new PriorityQueue<Pair>((x,y) -> x.distance - y.distance);
+        PriorityQueue<Pair>pq = new PriorityQueue<>((x,y) -> x.distance - y.distance);
         int dist[] = new int[V];
-        for(int i = 0;i < V;i++)
-          dist[i] = (int)1e9;
+        Arrays.fill(dist,(int)1e9);
         dist[S] = 0;
         pq.add(new Pair(0,S));
         while(pq.size() != 0){
