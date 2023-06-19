@@ -31,35 +31,31 @@ class Solution
 	public int minDifference(int arr[], int n) 
 	{ 
 	    // Your code goes here
-	    //int n = arr.length;
 	    int sum = 0;
+	    for(Integer i : arr)
+	       sum += i;
+	    boolean dp[][] = new boolean[n][sum + 1];
 	    for(int i = 0;i < n;i++){
-	        sum += arr[i];
+	        dp[i][0] = true;
 	    }
-	    boolean dp[][] = new boolean[n + 1][sum + 1];
-	    for(int i = 0;i < n + 1;i++){
-	        for(int j = 0;j < sum + 1;j++){
-	            if(i == 0)
-	              dp[i][j] = false;
-	            if(j == 0)
-	              dp[i][j] = true;
+	    if(arr[0] <= sum)
+	      dp[0][sum] = true;
+	    for(int i = 1;i < n;i++){
+	        for(int target = 1;target <= sum;target++){
+	            boolean notPick = dp[i - 1][target];
+	            boolean pick = false;
+	            if(arr[i] <= target)
+	              pick = dp[i - 1][target - arr[i]];
+	            dp[i][target] = notPick | pick;
 	        }
 	    }
-	    for(int i = 1;i < n + 1;i++){
-	        for(int j = 1;j < sum + 1;j++){
-	            if(arr[i - 1] <= j)
-	              dp[i][j] = dp[i - 1][j - arr[i - 1]]||dp[i - 1][j];
-	            else
-	              dp[i][j] = dp[i - 1][j];
-	        }
-	    }
-	    int mn = -1;
-	    for(int j = (sum/2);j >= 0;j--){
-	        if(dp[n][j] == true){
-	            mn = sum - 2*j;
-	            break;
-	        }
-	    }
-	    return mn;
+	    int mini = (int)1e9;
+        for (int i = 0; i <= sum; i++) {
+            if (dp[n - 1][i] == true) {
+            int diff = Math.abs(i - (sum - i));
+            mini = Math.min(mini, diff);
+            }
+        }
+        return mini;
 	} 
 }
