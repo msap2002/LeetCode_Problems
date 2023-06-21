@@ -36,23 +36,18 @@ class Solution{
     static int knapSack(int N, int W, int val[], int wt[])
     {
         // code here
-        int dp[][] = new int[N + 1][W + 1];
-        for(int i = 0;i < N + 1;i++){
-            for(int j = 0;j < W + 1;j++){
-                if(i == 0||j == 0)
-                    dp[i][j] = 0;
+        int dp[][] = new int[N][W + 1];
+        for(int i = wt[0];i <= W;i++)
+           dp[0][i] = (int)(i/wt[0]) * val[0];
+        for(int ind = 1;ind < N;ind++){
+            for(int target = 0;target <= W;target++){
+                int notPick = dp[ind - 1][target];
+                int pick = Integer.MIN_VALUE;
+                if(wt[ind] <= target)
+                   pick = val[ind] + dp[ind][target - wt[ind]];
+                dp[ind][target] = Math.max(pick,notPick);
             }
         }
-        for(int i = 1;i < N + 1;i++){
-            for(int j = 1;j < W + 1;j++){
-                if(wt[i - 1] <= j){
-                    dp[i][j] = (int)Math.max(val[i - 1] + dp[i][j - wt[i - 1]],dp[i - 1][j]);
-                }
-                else{
-                    dp[i][j] = dp[i - 1][j];
-                }
-            }
-        }
-        return dp[N][W];
+        return dp[N - 1][W];
     }
 }
