@@ -67,11 +67,11 @@ class Solution
         for(int i = 0;i < n;i++){
             if(currWeight + arr[i].weight <= W){
                 currWeight += arr[i].weight;
-                maxProfit += arr[i].value;
+                maxProfit += (double)arr[i].value;
             }
             else{
                 int remain = W - currWeight;
-                maxProfit += ((double)arr[i].value /(double)arr[i].weight) * (double)remain;
+                maxProfit += (double)(arr[i].value / arr[i].weight) * (double)remain;
                 break;
             }
         }
