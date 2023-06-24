@@ -71,7 +71,7 @@ class Solution
             }
             else{
                 int remain = W - currWeight;
-                maxProfit += (double)(arr[i].value / arr[i].weight) * (double)remain;
+                maxProfit += (double)(arr[i].value / (double)arr[i].weight) * (double)remain;
                 break;
             }
         }
