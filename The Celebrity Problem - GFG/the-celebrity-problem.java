@@ -33,25 +33,43 @@ class GFG{
 class Solution
 { 
     //Function to find if there is a celebrity in the party or not.
+    boolean knows(int[][] M,int A,int B){
+        if(M[A][B] == 1 && M[B][A] == 0)
+            return true;
+        return false;
+    }
     int celebrity(int M[][], int n)
     {
     	// code here 
-    	for(int row = 0;row < n;row++){
-    	    int col;
-    	    for(col = 0;col < n;col++){
-    	        if(row != col && M[row][col] == 1)
-    	            break;
-    	       }
-    	       if(col == n){
-    	           int ro;
-    	           for(ro = 0;ro < n;ro++){
-    	               if(ro != row && M[ro][row] == 0)
-    	                  break;
-    	           }
-    	           if(ro == n)
-    	             return row;
-    	       }
+    	Stack<Integer>stk = new Stack<>();
+    	for(int col = 0;col < n;col++){
+    	    stk.push(col);
     	}
-    	return -1;
+    	while(stk.size() > 1){
+    	    int A = stk.peek();
+    	    stk.pop();
+    	    int B = stk.peek();
+    	    stk.pop();
+    	    if(knows(M,A,B)){
+    	        stk.push(B);
+    	    }
+    	    else
+    	       stk.push(A);
+    	}
+    	int ans = stk.peek();
+    	int zeroCnt = 0;
+    	for(int col = 0;col < n;col++){
+    	    if(M[ans][col] == 0)
+    	      zeroCnt++;
+    	}
+    	if(zeroCnt != n)
+    	   return -1;
+    	int oneCnt = 0;
+    	for(int row = 0;row < n;row++)
+    	   if(M[row][ans] == 1)
+    	      oneCnt++;
+    	if(oneCnt != n - 1)
+    	   return -1;
+    	return ans;
     }
 }
