@@ -128,17 +128,16 @@ class Tree
       // Your code here
       ArrayList<Integer>leftView = new ArrayList<>();
       if(root == null)
-        return leftView;
-      leftViewBetter(root,0,leftView);
+         return leftView;
+      leftViewBetter(root,leftView,0);
       return leftView;
-      
     }
-    public void leftViewBetter(Node root,int level,ArrayList<Integer>leftView){
+    void leftViewBetter(Node root,ArrayList<Integer>leftView,int level){
         if(root == null)
            return;
-        if(level == leftView.size())
+        if(leftView.size() == level)
            leftView.add(root.data);
-        leftViewBetter(root.left,level + 1,leftView);
-        leftViewBetter(root.right,level + 1,leftView);
+        leftViewBetter(root.left,leftView,level + 1);
+        leftViewBetter(root.right,leftView,level + 1);
     }
 }
