@@ -54,23 +54,24 @@ class Solution
          // your code here 
          int dp[][] = new int[n][W + 1];
          for(int arr[] : dp)
-            Arrays.fill(arr,-1);
-         return f(n - 1,wt,val,W,dp);
+           Arrays.fill(arr,-1);
+         return knapSackHelper(n - 1,W,wt,val,n,dp);
     } 
-    public static int f(int ind,int[] wt,int[] val,int W,int[][] dp){
-        if(ind == 0){
-            if(wt[0] <= W)
-               return val[0];
+    static int knapSackHelper(int index,int W,int wt[],int val[],int n,int dp[][]){
+        if(index == 0){
+            if(wt[index] <= W)
+               return val[index];
             else
                return 0;
         }
-        if(dp[ind][W] != -1)
-           return dp[ind][W];
-        int notPick = 0 + f(ind - 1,wt,val,W,dp);
+        if(dp[index][W] != -1)
+           return dp[index][W];
+        int notPick = 0 + knapSackHelper(index - 1,W,wt,val,n,dp);
         int pick = Integer.MIN_VALUE;
-        if(wt[ind] <= W)
-          pick = val[ind] + f(ind - 1,wt,val,W - wt[ind],dp);
-        return dp[ind][W] = Math.max(pick,notPick);
+        if(wt[index] <= W){
+            pick = val[index] + knapSackHelper(index - 1,W - wt[index],wt,val,n,dp);
+        }
+        return dp[index][W] = Math.max(pick,notPick);
     }
 }
 
