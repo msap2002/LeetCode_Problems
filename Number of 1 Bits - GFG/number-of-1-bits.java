@@ -26,7 +26,9 @@ class Solution {
         // code here
         int count = 0;
         while(N != 0){
-            count += (N % 2);
+            int rem = N % 2;
+            if(rem == 1)
+               count++;
             N = N / 2;
         }
         return count;
