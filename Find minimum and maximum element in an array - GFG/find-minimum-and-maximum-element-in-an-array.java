@@ -5,10 +5,10 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-class pair  
+class Pair  
 {  
     long first, second;  
-    public pair(long first, long second)  
+    public Pair(long first, long second)  
     {  
         this.first = first;  
         this.second = second;  
@@ -33,7 +33,7 @@ class GFG {
             }
             
             Compute obj = new Compute();
-            pair product = obj.getMinMax(a, n); 
+            Pair product = obj.getMinMax(a, n); 
             System.out.println(product.first+" "+product.second);
             
         }
@@ -47,22 +47,23 @@ class GFG {
 //User function Template for Java
 
 /*
- class pair  
+ class Pair  
 {  
     long first, second;  
-    public pair(long first, long second)  
+    public Pair(long first, long second)  
     {  
         this.first = first;  
         this.second = second;  
     }  
 } */
+
 class Compute 
 {
-    static pair getMinMax(long a[], long n)  
+    static Pair getMinMax(long a[], long n)  
     {
         //Write your code here
-        long max = Integer.MIN_VALUE;
-        long min = Integer.MAX_VALUE;
+        long min = Long.MAX_VALUE;
+        long max = Long.MIN_VALUE;
         for(int i = 0;i < n;i++){
             if(a[i] > max){
                 max = a[i];
@@ -73,6 +74,6 @@ class Compute
                 min = a[i];
             }
         }
-        return new pair(min,max);
+        return new Pair(min,max);
     }
 }
