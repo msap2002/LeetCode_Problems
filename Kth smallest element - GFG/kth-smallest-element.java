@@ -37,22 +37,15 @@ class Solution{
     public static int kthSmallest(int[] arr, int l, int r, int k) 
     { 
         //Your code here
-       Comparator<Integer>maxHeapComparator = Comparator.reverseOrder();
-       PriorityQueue<Integer>maxHeap = new PriorityQueue<>(maxHeapComparator);
-       int n = arr.length;
-       for(int i = l;i <= r;i++){
-           if(maxHeap.size() < k){
-               maxHeap.add(arr[i]);
-           }
-           else{
-               if(arr[i] < maxHeap.peek()){
-                   maxHeap.poll();
-                   maxHeap.add(arr[i]);
-               }
-               else
-                   continue;
-           }
-       }
-       return maxHeap.peek();
+        PriorityQueue<Integer>maxHeap = new PriorityQueue<>((a,b) -> a - b);
+        for(int i = l;i <= r;i++){
+            maxHeap.add(arr[i]);
+        }
+        int f = k - 1;
+        while(f > 0){
+            maxHeap.remove();
+            f--;
+        }
+        return maxHeap.peek();
     } 
 }
