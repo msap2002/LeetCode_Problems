@@ -13,28 +13,26 @@ class Solution
     public static void sort012(int a[], int n)
     {
         // code here 
-        int z,o,t;
-        z = o = t = 0;
-        for(int i = 0;i < n;i++){
-            if(a[i] == 0){
-                z++;
+        int lo = 0,mid = 0,hi = n - 1;
+        while(mid <= hi){
+            if(a[mid] == 0){
+                swap(a,lo,mid);
+                lo++;
+                mid++;
             }
-            else if(a[i] == 1){
-                o++;
+            else if(a[mid] == 1){
+                mid++;
             }
             else{
-                t++;
+                swap(a,mid,hi);
+                hi--;
             }
         }
-        for(int i = 0;i < z;i++){
-            a[i] = 0;
-        }
-        for(int i = z;i < o + z;i++){
-            a[i] = 1;
-        }
-        for(int i = o + z;i < n;i++){
-            a[i] = 2;
-        }
+    }
+    public static void swap(int arr[],int i,int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }
 
