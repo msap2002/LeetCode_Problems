@@ -10,6 +10,7 @@ class GFG {
 	{
 	        BufferedReader br =
             new BufferedReader(new InputStreamReader(System.in));
+            PrintWriter ot = new  PrintWriter(System.out);
         int t =
             Integer.parseInt(br.readLine().trim()); // Inputting the testcases
         while(t-->0)
@@ -25,10 +26,11 @@ class GFG {
             obj.segregateElements(a, n);
             
             for(int i=0;i<n;i++)
-            System.out.print(a[i]+" ");
+            ot.print(a[i]+" ");
             
-            System.out.println();
+            ot.println();
         }
+        ot.close();
 	}
 }
 
@@ -42,38 +44,24 @@ class Solution {
     public void segregateElements(int arr[], int n)
     {
         // Your code goes here
-        int count = 0;
-        for(int i = 0;i < n;i++){
-            if(arr[i] > 0)
-              count++;
-        }
-        int arr1[] = new int[count];
-        int arr2[] = new int[n - count];
-        int x = 0;
-        for(int i = 0;i < n;i++){
+        int positive[] = new int[n];
+        int negative[] = new int[n];
+        int k = 0;
+        int l = 0;
+        for(int i = 0;i < arr.length;i++){
             if(arr[i] > 0){
-                arr1[x] = arr[i];
-                x++;
+               positive[k++] = arr[i]; 
+            }
+            else if(arr[i] < 0){
+                negative[l++] = arr[i];
             }
         }
-        int y = 0;
-        for(int i = 0;i < n;i++){
-            if(arr[i] < 0){
-                arr2[y] = arr[i];
-                y++;
-            }
-        }
-        int res[] = new int[n];
-        for(int i = 0;i < count;i++){
-            res[i] = arr1[i];
-        }
-        int j = 0;
-        for(int i = count;i < n;i++){
-            res[i] = arr2[j];
-            j++;
+        int x = 0;
+        for(int i = k;i < n;i++){
+            positive[i] = negative[x++];
         }
         for(int i = 0;i < n;i++){
-            arr[i] = res[i];
+            arr[i] = positive[i];
         }
     }
 }
