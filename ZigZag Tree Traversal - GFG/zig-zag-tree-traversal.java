@@ -127,30 +127,29 @@ class GFG
 	ArrayList<Integer> zigZagTraversal(Node root)
 	{
 	    //Add your code here.
-	    ArrayList<Integer>zigzag = new ArrayList<>();
-	    if(root == null)
-	      return zigzag;
-	    Queue<Node>q = new LinkedList<>();
-	    q.add(root);
+	    ArrayList<Integer>ans = new ArrayList<>();
+	    Queue<Node>queue = new LinkedList<>();
+	    queue.add(root);
 	    boolean flag = false;
-	    while(!q.isEmpty()){
-	        int size = q.size();
-	        LinkedList<Integer>subList = new LinkedList<>();
+	    while(!queue.isEmpty()){
+	        int size = queue.size();
+	        LinkedList<Integer>list = new LinkedList<>();
 	        for(int i = 0;i < size;i++){
-	            Node node = q.poll();
+	            Node node = queue.poll();
 	            if(node.left != null)
-	               q.add(node.left);
+	                queue.add(node.left);
 	            if(node.right != null)
-	               q.add(node.right);
+	                queue.add(node.right);
 	            if(flag)
-	              subList.addFirst(node.data);
+	               list.addFirst(node.data);
 	            else
-	              subList.addLast(node.data);
+	               list.addLast(node.data);
 	        }
 	        flag = !flag;
-	        for(Integer ele : subList)
-	          zigzag.add(ele);
+	        for(Integer i : list){
+	            ans.add(i);
+	        }
 	    }
-	    return zigzag;
+	    return ans;
 	}
 }
