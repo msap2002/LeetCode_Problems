@@ -62,7 +62,7 @@ class Solution
 
         StringBuilder ans = new StringBuilder();
         // Handle sign
-        if ((numerator < 0) ^ (denominator < 0)) {
+        if ((numerator < 0) || (denominator < 0)) {
             ans.append("-");
         }
 
