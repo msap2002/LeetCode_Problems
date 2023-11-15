@@ -52,27 +52,43 @@ class Solution
     static int knapSack(int W, int wt[], int val[], int n) 
     { 
          // your code here 
-         int[][] dp = new int[n + 1][W + 1];
-         for(int[] arr : dp){
-             Arrays.fill(arr,-1);
-         }
-         return f(n - 1,W,wt,val,dp);
-    } 
-    static int f(int index,int W,int[] wt,int[] val,int[][] dp){
-        if(index == 0){
-            if(wt[index] <= W)
-                return val[index];
-            else
-                return 0;
+         int[][] dp = new int[n][W + 1];
+        //  for(int[] arr : dp){
+        //      Arrays.fill(arr,-1);
+        //  }
+        //  return f(n - 1,W,wt,val,dp);
+        for(int w = 0;w <= W;w++){
+           if(wt[0] <= w)
+               dp[0][w] = val[0];
+           else
+               dp[0][w] = 0;
         }
-        if(dp[index][W] != -1)
-            return dp[index][W];
-        int notPick = f(index - 1,W,wt,val,dp);
-        int pick = Integer.MIN_VALUE;
-        if(wt[index] <= W)
-           pick = val[index] + f(index - 1,W - wt[index],wt,val,dp);
-        return dp[index][W] = Math.max(pick,notPick);
-    }
+        for(int index = 1;index < n;index++){
+            for(int w = 0;w <= W;w++){
+                int notPick = dp[index - 1][w];
+                int pick = Integer.MIN_VALUE;
+                if(wt[index] <= w)
+                    pick = val[index] + dp[index - 1][w - wt[index]];
+                dp[index][w] = Math.max(pick,notPick);
+            }
+        }
+        return dp[n - 1][W];
+    } 
+    // static int f(int index,int W,int[] wt,int[] val,int[][] dp){
+    //     if(index == 0){
+    //         if(wt[index] <= W)
+    //             return val[index];
+    //         else
+    //             return 0;
+    //     }
+    //     if(dp[index][W] != -1)
+    //         return dp[index][W];
+    //     int notPick = f(index - 1,W,wt,val,dp);
+    //     int pick = Integer.MIN_VALUE;
+    //     if(wt[index] <= W)
+    //       pick = val[index] + f(index - 1,W - wt[index],wt,val,dp);
+    //     return dp[index][W] = Math.max(pick,notPick);
+    // }
 }
 
 
